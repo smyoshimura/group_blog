@@ -1,5 +1,5 @@
 <?php
-$blog = array('title'=>'', 'text'=>'', 'owner_id'=>'', 'public'=>'');
+$blog = array('title'=>'', 'text'=>'', 'tags'=>'', 'owner_id'=>'', 'public'=>'');
 //IF BLOG IS CREATED AND PUBLISHED RIGHT AWAY AND PUBLIC
 $query = "INSERT INTO `blogs`(`id`, `title`, `text`, `tags`, `owner_id`, `created_timestamp`, `published_timestamp`, `edited_timestamp`, `public`, `soft_delete`) VALUES (null,'title','text','string of tags',1,NOW(),NOW(),NOW(),1,0)";
 
