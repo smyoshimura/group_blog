@@ -11,11 +11,12 @@ $query = "DELETE FROM blogs WHERE id=$article_id";
 mysqli_query($conn, $query);
 
 if (mysqli_affected_rows($conn)>0) {
-    $result = ['success'=>true, 'del_id'=>$article_id];
+    $result = ['success'=>true, 'data'=>['del_id'=>$article_id]];
     print_r(json_encode($result));
 }
 else {
-    $result = ['success'=>false, 'error'=>'Operation failed'];
+    $errorMsg = 'Operation failed';
+    $result = ['success'=>true, 'data'=>['del_id'=>$article_id], 'errors'=>$errorMsg];
     print_r(json_encode($result));
 }
 
