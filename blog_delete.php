@@ -4,19 +4,20 @@ header('Access-Control-Allow-Methods: GET, POST');
 require('db_connect.php');
 
 $user_id = $_SESSION['user_id'];
-$article_id = $_POST['article_id'];
+$blog_ids = $_POST['blog_ids'];
 
-
-$query = "DELETE FROM blogs WHERE id=$article_id";
-mysqli_query($conn, $query);
+foreach ($blog_ids as $values) {
+    $query = "DELETE FROM blogs WHERE id=$values";
+    mysqli_query($conn, $query);
+}
 
 if (mysqli_affected_rows($conn)>0) {
-    $result = ['success'=>true, 'data'=>['del_id'=>$article_id]];
+    $result = ['success'=>true, 'data'=>['ids'=>$blog_ids]];
     print_r(json_encode($result));
 }
 else {
-    $errorMsg = 'Operation failed';
-    $result = ['success'=>true, 'data'=>['del_id'=>$article_id], 'errors'=>$errorMsg];
+    $errors = ['DB error', 'ID error'];
+    $result = ['success'=>true, 'data'=>['ids'=>$blog_ids], 'errors'=>$errors];
     print_r(json_encode($result));
 }
 
