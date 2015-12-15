@@ -1,0 +1,20 @@
+body {
+    width: 100vw;
+}
+
+/** header ******************* **/
+header {
+    border: 1px solid red;
+    height: 31vh;
+}
+
+/** body ****************** **/
+#nav {
+    border: 1px solid black;
+    height: 64vh;
+}
+
+#main {
+    border: 1px solid pink;
+    height: 64vh;
+}
