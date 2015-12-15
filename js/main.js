@@ -7,7 +7,7 @@ app.config(function ($routeProvider){
             controller: 'loginCtrl'
         })
         .when('/register', {
-            templateUrl: 'register.html',
+            templateUrl: 'registration.html',
             controller: 'registerCtrl'
         })
         .when('/blog', {
@@ -15,15 +15,11 @@ app.config(function ($routeProvider){
             controller: 'blogCtrl'
         })
         .when('/blog-list', {
-            templateUrl: 'blog-list.html',
-            controller: 'blogListCtrl'
-        })
-        .when('/post', {
-            templateUrl: 'post.html',
-            controller: 'postCtrl'
+            templateUrl: 'update.html',
+            controller: 'updateCtrl'
         })
         .otherwise({
-            redirectTo: '/'
+            redirectTo: '/login'
         })
 });
 
@@ -43,10 +39,6 @@ app.controller('blogCtrl', function (blogService) {
 
 });
 
-app.controller('blogListCtrl', function (blogService) {
-
-});
-
-app.controller('postCtrl', function (blogService){
+app.controller('updateCtrl', function (blogService) {
 
 });
