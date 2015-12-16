@@ -6,7 +6,7 @@ session_start();
 $user_email = $_POST['email'];
 $user_password = $_POST['password'];
 
-// perform validation/regex on email chars
+// Need to validate email chars
 
 // perform email & password validation against DB
 require('db_connect.php');
