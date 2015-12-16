@@ -1,6 +1,7 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
+session_start();
 
 $user_email = $_POST['email'];
 $user_password = $_POST['password'];
@@ -10,12 +11,11 @@ $user_password = $_POST['password'];
 // perform email & password validation against DB
 require('db_connect.php');
 $query = "SELECT email, password FROM users WHERE email=$user_email";
-if
+
 
 
 // if login success
-$token = uniqid();
-//print_r($token);
+$token = md5(uniqid(mt_rand(), true));
 $_SESSION['token'] = $token;
 
 
