@@ -3,12 +3,14 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
 session_start();
 
+//$user_email = 'jean@gmail.com';
+//$user_password = 'jean1';
 $user_email = $_POST['email'];
 $user_password = $_POST['password'];
 
 require('db_connect.php');
 // get user data based on user's email address inputted
-$query = "SELECT id, email, password FROM users WHERE email='$user_email'";
+$query = "SELECT id, username, email, password FROM users WHERE email='$user_email'";
 $user_data = mysqli_query($conn, $query);
 
 // if email found, assign user data to $output, validate password, assign user id to SESSION variable
@@ -19,7 +21,9 @@ if (mysqli_num_rows($user_data)>0) {
     if ($output[0]['password'] == $user_password) {
         // correct password
         $_SESSION['user_id'] = $output[0]['id'];
-        $result = ['success'=>1, 'user_id'=>$_SESSION['user_id']];
+        $result = ['success'=>1,
+            'data'=>['user_id'=>$output[0]['id'], 'username'=>$output[0]['username'], 'auth_token'=>'test12345']
+        ];
         unset($output);
     }
     else {
