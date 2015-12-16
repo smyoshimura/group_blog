@@ -18,16 +18,19 @@ if (mysqli_num_rows($user_data)>0) {
     while ($row = mysqli_fetch_assoc($user_data)) {
         $output[] = $row;
     }
+    // correct password
     if ($output[0]['password'] == $user_password) {
-        // correct password
         $_SESSION['user_id'] = $output[0]['id'];
+        // generate token
+        $token = md5(uniqid(mt_rand(), true));
+        $_SESSION['token'] = $token;
         $result = ['success'=>1,
-            'data'=>['user_id'=>$output[0]['id'], 'username'=>$output[0]['username'], 'auth_token'=>'test12345']
+            'data'=>['user_id'=>$output[0]['id'], 'username'=>$output[0]['username'], 'auth_token'=>$token]
         ];
         unset($output);
     }
+    // incorrect password
     else {
-        // incorrect password
         $result = ['success'=>0, 'error'=>'incorrect password'];
         unset($output);
     }
@@ -46,6 +49,5 @@ else {
     print_r($result);
 }
 
-// if login success
-//$token = md5(uniqid(mt_rand(), true));
-//$_SESSION['token'] = $token;
+?>
+
