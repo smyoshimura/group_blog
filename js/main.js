@@ -14,7 +14,7 @@ app.config(function ($routeProvider){
             templateUrl: 'blog.html',
             controller: 'blogCtrl'
         })
-        .when('/blog-list', {
+        .when('/update', {
             templateUrl: 'update.html',
             controller: 'updateCtrl'
         })
