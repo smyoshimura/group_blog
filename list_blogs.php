@@ -11,3 +11,6 @@ if(mysqli_num_rows($result)>0){
 };
 print(json_encode($output));
 ?>
+<?php
+
+?>

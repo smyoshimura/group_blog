@@ -4,7 +4,7 @@ header('Access-Control-Allow-Methods: GET, POST');
 require('connect.php');
 if(!empty($_POST)) {
     $id = $_POST['blog_id'];
-    $token = null;
+    $token = $_SESSION['token'];
     if ($token === null){
        $public = 1;
     }
