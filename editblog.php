@@ -32,37 +32,19 @@ function editPrivacy(){
 }
 
 $edits = array('title'=>'yay title', 'text'=>'helllloooooooo', 'tags'=>'fun, fun, fun', 'public'=>'', 'publish'=>'');
-//$querygoal = "UPDATE `blogs` SET `title`=[value-2],`text`=[value-3],`tags`=[value-4],`published_timestamp`=[value-7],`public`=[value-9], WHERE `id` = 1"
 
 function makeAnUpdate($edits){
+    $updateString = array();
     //TODO REQUIRE CONNECTION FILE
     echo '<pre>';
     foreach($edits as $editedItem => $edit) {
         if(!empty($edit)){
-            echo "`$editedItem` = '{$edit}',";
-
-//            switch ($editedItem) {
-//                case 'title':
-//                    editTitle();
-//                    break;
-//                case 'text':
-//                    editText();
-//                    break;
-//                case 'tags':
-//                    editTags();
-//                    break;
-//                case 'public':
-//                    editPrivacy();
-//                    break;
-//                case 'publish':
-//                    editPublish();
-//                    break;
-//            }
-        }
+            array_push($updateString,"`$editedItem` = '{$edit}'");
         else{
-            //echo "There are no needed edits in the category: \$edits[$editedItem]\n";
+            echo "There are no needed edits in the category: \$edits[$editedItem]\n";
         }
     }
+    print_r(implode(',', $updateString));
 
     echo '</pre>';
 }
