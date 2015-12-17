@@ -1,38 +1,65 @@
 <?php
-$blog = array('title'=>'this is the title', 'text'=>'text', 'tags'=>'tag 1, tag 2, tag 3', 'owner_id'=>'1', 'public'=>'1');
-//IF BLOG IS CREATED AND PUBLISHED RIGHT AWAY AND PUBLIC
-$query = "INSERT INTO `blogs`(`id`, `title`, `text`, `tags`, `owner_id`, `created_timestamp`, `published_timestamp`, `edited_timestamp`, `public`, `soft_delete`) VALUES (null,'title','text','string of tags',1,NOW(),NOW(),NOW(),1,0)";
+/*When this is all put together, it should be wrapped in an if($_POST){} or if($_GET){}
+and $blog should be equal to json_decode($_POST)
+*/
+$blog = array('title' => 'title fun woooo', 'text' => 'text again and more', 'tags' => 'please, work', 'owner_id' => '2', 'public' => '1', 'publish' => 'yes');
 
-//IF BLOG IS CREATED AND USER WANTS TO PUBLISH IT LATER
-$query = "INSERT INTO `blogs`(`id`, `title`, `text`, `tags`, `owner_id`, `created_timestamp`, `published_timestamp`, `edited_timestamp`, `public`, `soft_delete`) VALUES (null,'title','text', 'string of tags',1,NOW(),null,NOW(),1,0)";
+function create_blog($blog)
+{
+    require('blog_connect.php');
+    //this checks the conditions of the blog and adds them to the table
+    if (($blog['publish'] == null) && ($blog['public'] == 1)) {
+        echo 'this blog is public & will be published later';
+        $query = "INSERT INTO `blogs`(`id`, `title`, `text`, `tags`, `owner_id`, `created_timestamp`, `published_timestamp`, `edited_timestamp`, `public`, `soft_delete`) VALUES (null,'{$blog['title']}','{$blog['text']}','{$blog['tags']}',1,NOW(),null,NOW(),1,0)";
+    } elseif (($blog['publish'] == null) && ($blog['public'] == 0)) {
+        echo 'this blog is private and will be published later';
+        $query = "INSERT INTO `blogs`(`id`, `title`, `text`, `tags`, `owner_id`, `created_timestamp`, `published_timestamp`, `edited_timestamp`, `public`, `soft_delete`) VALUES (null,'{$blog['title']}','{$blog['text']}','{$blog['tags']}',1,NOW(),null,NOW(),1,0)";
+    } elseif (($blog['publish'] != null) && ($blog['public'] == 1)) {
+        echo 'this blog is public and will be published now';
+        $query = "INSERT INTO `blogs`(`id`, `title`, `text`, `tags`, `owner_id`, `created_timestamp`, `published_timestamp`, `edited_timestamp`, `public`, `soft_delete`) VALUES (null,'{$blog['title']}','{$blog['text']}','{$blog['tags']}',1,NOW(),NOW(),NOW(),1,0)";
+    } elseif (($blog['publish'] != null) && ($blog['public'] == 0)) {
+        echo 'this blog is private and will be published now';
+        $query = "INSERT INTO `blogs`(`id`, `title`, `text`, `tags`, `owner_id`, `created_timestamp`, `published_timestamp`, `edited_timestamp`, `public`, `soft_delete`) VALUES (null,'{$blog['title']}','{$blog['text']}','{$blog['tags']}',1,NOW(),NOW(),NOW(),0,0)";
 
-//IF BLOG IS CREATED AND PUBLISHED RIGHT AWAY AND PRIVATE
-$query = "INSERT INTO `blogs`(`id`, `title`, `text`, `tags`, `owner_id`, `created_timestamp`, `published_timestamp`, `edited_timestamp`, `public`, `soft_delete`) VALUES (null,'title','text', 'string of tags',1,NOW(),NOW(),NOW(),0,0)";
+    }
+    mysqli_query($conn, $query);
+    //this query returns the id & timestamp of the blog
+    $query3 = "SELECT `id`, `created_timestamp`, `owner_id` FROM blogs ORDER BY id DESC LIMIT 1";
+    $rows = mysqli_query($conn, $query3);
+    if (mysqli_num_rows($rows) > 0) {
+        $success = true;
+        while ($row = mysqli_fetch_assoc($rows)) {
+            $data = array(
+                'id' => $row['id'],
+                'ts' => $row['created_timestamp']
+            );
+            $author = $row['owner_id'];
 
-//IF BLOG IS CREATED AND USER WANTS TO PUBLISH IT LATER AND IT IS PRIVATE
-$query = "INSERT INTO `blogs`(`id`, `title`, `text`, `tags`, `owner_id`, `created_timestamp`, `published_timestamp`, `edited_timestamp`, `public`, `soft_delete`) VALUES (null,'title','text', 'string of tags',1,NOW(),null,NOW(),1,0)";
+            $response = array('success'=>$success, 'data'=>$data);
+        }
+    } else {
+        $errors = array();
+        $errors[] = 'there was no id returned';
+        $success = false;
+        $response = array('success'=>$success, 'data'=>$data, 'error' => $errors);
 
-function seperateTags($blog){
-?>
-<pre>
-<?php
-$tags = explode(',',$blog['tags']);
-foreach($tags as $tag){
-    $query = "INSERT INTO `tags`(`blog_id`, `owner`, `tag`) VALUES ('blog id','owner id','{$tag}')";
-    print_r($query . '<br>');
+    }
+    //this separates the tags and adds them into the tag table
+    $tags = explode(',', $blog['tags']);
+    foreach ($tags as $tag) {
+        $query2 = "INSERT INTO `tags`(`blog_id`, `owner`, `tag`) VALUES ('{$data['id']}','{$author}','{$tag}')";
+        mysqli_query($conn, $query2);
+    }
+    $jsonresponse = json_encode($response);
+    return $jsonresponse;
+
 }
 
-?>
-    </pre>
-<?
-}
 
-seperateTags($blog);
+create_blog($blog);
+
+
 ?>
-<pre>
-<?php
-print_r($blog);
-?>
-    </pre>
+
 
 

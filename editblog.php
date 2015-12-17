@@ -32,21 +32,27 @@ function editPrivacy(){
 }
 
 $edits = array('title'=>'yay title', 'text'=>'helllloooooooo', 'tags'=>'fun, fun, fun', 'public'=>'', 'publish'=>'');
-
-function makeAnUpdate($edits){
+$id = 1;
+function makeAnUpdate($edits, $id)
+{
+    global $id;
     $updateString = array();
-    //TODO REQUIRE CONNECTION FILE
-    echo '<pre>';
-    foreach($edits as $editedItem => $edit) {
-        if(!empty($edit)){
-            array_push($updateString,"`$editedItem` = '{$edit}'");
-        else{
-            echo "There are no needed edits in the category: \$edits[$editedItem]\n";
-        }
-    }
-    print_r(implode(',', $updateString));
+    require('blog_connect.php');
 
-    echo '</pre>';
+    foreach ($edits as $editedItem => $edit) {
+        if (!empty($edit)) {
+            array_push($updateString, "`$editedItem` = '{$edit}' ");
+        }
+//        else{
+//                echo "There are no needed edits in the category: \$edits[$editedItem]\n";
+//            echo '<br>';
+//            }
+
+    }
+    $updateString = implode(',', $updateString);
+    $query = 'UPDATE `blogs` SET ' . "{$updateString}" . 'WHERE `id` = '. $id;
+    //print_r(implode(',', $updateString));
+    print_r($query);
 }
 
-makeAnUpdate($edits);
+makeAnUpdate($edits, $id);
