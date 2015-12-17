@@ -46,11 +46,11 @@ else {
 
 // send result data via ajax
 if (isset($result)) {
-    print_r($result);
+    print_r(json_encode($result));
 }
 else {
     $result = ['success'=>0, 'data'=>[], 'error'=>'operation error'];
-    print_r($result);
+    print_r(json_encode($result));
 }
 
 ?>
