@@ -50,7 +50,7 @@ if (isset($blog_ids)) {
 }
 
 // perform deletion
-if (isset($token) && !$invalid_id) {
+if ($token == $_SESSION['token'] && !$invalid_id) {
 /*    // generate queries for hard/permanent delete
     foreach ($blog_ids as $values) {
         $queries[] = "DELETE FROM blogs WHERE id=$values";
@@ -72,9 +72,9 @@ if (isset($token) && !$invalid_id) {
         $result = ['success'=>0, 'data'=>['ids'=>$blog_ids], 'errors'=>'unknown database error'];
     }
 }
-//else if ($token == '12345')) {
-//    $result = ['success'=>0, 'data'=>[], 'errors'=>'invalid token'];
-//}
+else if ($token != $_SESSION['token']) {
+    $result = ['success'=>0, 'data'=>[], 'errors'=>'invalid token'];
+}
 
 // send result data via ajax
 if (isset($result)) {

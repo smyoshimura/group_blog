@@ -27,9 +27,10 @@ if (mysqli_num_rows($user_data)>0) {
         ];
         $_SESSION['uid'] = $output[0]['id'];
         $_SESSION['token'] = $token;
-        $uid = $output[0]['id'];
+        // sessions token table
+/*        $uid = $output[0]['id'];
         $query_s = "INSERT INTO sessions (user_id, token) VALUES('$uid','$token')";
-        mysqli_query($conn, $query_s);
+        mysqli_query($conn, $query_s);*/
         unset($output);
         unset($token);
     }
