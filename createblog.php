@@ -9,16 +9,16 @@ function create_blog($blog)
     require('blog_connect.php');
     //this checks the conditions of the blog and adds them to the table
     if (($blog['publish'] == null) && ($blog['public'] == 1)) {
-        echo 'this blog is public & will be published later';
+        //Condition: this blog is public & will be published later
         $query = "INSERT INTO `blogs`(`id`, `title`, `text`, `tags`, `owner_id`, `created_timestamp`, `published_timestamp`, `edited_timestamp`, `public`, `soft_delete`) VALUES (null,'{$blog['title']}','{$blog['text']}','{$blog['tags']}',1,NOW(),null,NOW(),1,0)";
     } elseif (($blog['publish'] == null) && ($blog['public'] == 0)) {
-        echo 'this blog is private and will be published later';
+        //Condition: this blog is private and will be published later
         $query = "INSERT INTO `blogs`(`id`, `title`, `text`, `tags`, `owner_id`, `created_timestamp`, `published_timestamp`, `edited_timestamp`, `public`, `soft_delete`) VALUES (null,'{$blog['title']}','{$blog['text']}','{$blog['tags']}',1,NOW(),null,NOW(),1,0)";
     } elseif (($blog['publish'] != null) && ($blog['public'] == 1)) {
-        echo 'this blog is public and will be published now';
+        //Condition: this blog is public and will be published now
         $query = "INSERT INTO `blogs`(`id`, `title`, `text`, `tags`, `owner_id`, `created_timestamp`, `published_timestamp`, `edited_timestamp`, `public`, `soft_delete`) VALUES (null,'{$blog['title']}','{$blog['text']}','{$blog['tags']}',1,NOW(),NOW(),NOW(),1,0)";
     } elseif (($blog['publish'] != null) && ($blog['public'] == 0)) {
-        echo 'this blog is private and will be published now';
+        //Condition: this blog is private and will be published now
         $query = "INSERT INTO `blogs`(`id`, `title`, `text`, `tags`, `owner_id`, `created_timestamp`, `published_timestamp`, `edited_timestamp`, `public`, `soft_delete`) VALUES (null,'{$blog['title']}','{$blog['text']}','{$blog['tags']}',1,NOW(),NOW(),NOW(),0,0)";
 
     }
@@ -51,6 +51,7 @@ function create_blog($blog)
         mysqli_query($conn, $query2);
     }
     $jsonresponse = json_encode($response);
+    //echo $jsonresponse;
     return $jsonresponse;
 
 }
