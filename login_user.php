@@ -4,10 +4,10 @@ header('Access-Control-Allow-Methods: GET, POST');
 session_start();
 require('db_connect.php');
 
-//$user_email = $_POST['email'];
-//$user_password = $_POST['password'];
-$user_email = 'jean@gmail.com';
-$user_password = 'jean1';
+$user_email = $_POST['email'];
+$user_password = $_POST['password'];
+//$user_email = 'jean@gmail.com';
+//$user_password = 'jean1';
 
 // get user data based on user's email address inputted
 $query = "SELECT id, username, email, password FROM users WHERE email='$user_email'";
@@ -43,7 +43,7 @@ else {
     $result = ['success'=>0, 'data'=>[], 'error'=>'email not found'];
 }
 
-// print_r($result) sends the AJAX output
+// send result data via ajax
 if (isset($result)) {
     print_r($result);
 }
