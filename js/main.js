@@ -23,6 +23,28 @@ app.config(function ($routeProvider) {
         })
 });
 
+app.service("userService", function ($q, $http) {
+    var selfUser = this;
+
+    selfUser.currentUser = {};
+
+    selfUser.loginUser = function (user) {
+        var dataObj = $.param({
+            email: user.email,
+            password: user.password
+        });
+
+        console.log('Sending login request.');
+
+        return $http({
+            url: 'http://s-apis.learningfuze.com/blog/login.json',
+            method: 'POST',
+            data: dataObj,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        });
+    };
+});
+
 app.service("blogService", function ($q, $http) {
     var selfServe = this;
 
@@ -48,24 +70,6 @@ app.service("blogService", function ($q, $http) {
         return selfServe.serviceArray;
     };
 
-    selfServe.currentUser = {};
-
-    selfServe.loginUser = function (user) {
-        dataObj = $.param({
-            email: user.email,
-            password: user.password
-        });
-
-        console.log('Sending login request.');
-
-        return $http({
-            url: 's-apis.learningfuze.com/blog/login.json',
-            method: 'POST',
-            data: dataObj,
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        });
-    };
-
     selfServe.postBlogEntry = function (entry) {
         selfServe.serviceArray.splice(0, 0, entry);
     }
@@ -83,7 +87,7 @@ app.controller('loginCtrl', function (blogService) {
 app.controller('registerCtrl', function (blogService) {
     var selfReg = this;
 
-    selfReg.regsiterUser = function () {
+    selfReg.registerUser = function () {
 
     };
 

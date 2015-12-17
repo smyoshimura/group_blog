@@ -4,7 +4,7 @@
     <div class="row">
 
         <!-- Blog Post Content Column -->
-        <div class="col-lg-8" ng-repeat="entry in bc.currentBlog()">
+        <div class="col-lg-8" ng-repeat="entry in bc.currentBlog() | filter: search">
 
             <!-- Blog Post -->
 
@@ -43,7 +43,7 @@
                 <h4>Blog Search</h4>
 
                 <div class="input-group">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" ng-model="search">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button">
                                 <span class="glyphicon glyphicon-search"></span>
