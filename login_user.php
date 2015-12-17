@@ -23,21 +23,21 @@ if (mysqli_num_rows($user_data)>0) {
         // generate token
         $token = md5(uniqid(mt_rand(), true));
         $result = ['success'=>1,
-            'data'=>['user_id'=>$output[0]['id'], 'username'=>$output[0]['username'], 'auth_token'=>$token]
+            'data'=>['uid'=>$output[0]['id'], 'username'=>$output[0]['username'], 'auth_token'=>$token]
         ];
-        $_SESSION['user_id'] = $output[0]['id'];
+        $_SESSION['uid'] = $output[0]['id'];
         $_SESSION['token'] = $token;
         unset($output);
         unset($token);
     }
     // incorrect password
     else {
-        $result = ['success'=>0, 'error'=>'incorrect password'];
+        $result = ['success'=>0, 'data'=>[], 'error'=>'incorrect password'];
         unset($output);
     }
 }
 else {
-    $result = ['success'=>0, 'error'=>'email not found'];
+    $result = ['success'=>0, 'data'=>[], 'error'=>'email not found'];
 }
 
 // print_r($result) sends the AJAX output
@@ -45,7 +45,7 @@ if (isset($result)) {
     print_r($result);
 }
 else {
-    $result = ['success'=>0, 'error'=>'operation error'];
+    $result = ['success'=>0, 'data'=>[], 'error'=>'operation error'];
     print_r($result);
 }
 
