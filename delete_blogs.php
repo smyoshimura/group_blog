@@ -4,7 +4,7 @@ header('Access-Control-Allow-Methods: GET, POST');
 session_start();
 require('db_connect.php');
 
-$user_id = $_SESSION['user_id'];
+$user_id = $_SESSION['uid'];
 $blog_ids = $_POST['blog_ids'];
 
 // Query to delete blog based on blog IDs selected
@@ -17,12 +17,12 @@ foreach ($blog_ids as $values) {
 
 // Check if query operation deleted at least 1 row, otherwise output errors
 if (mysqli_affected_rows($conn)>0) {
-    $result = ['success'=>true, 'data'=>['ids'=>$blog_ids]];
+    $result = ['success'=>1, 'data'=>['ids'=>$blog_ids]];
     print_r(json_encode($result));
 }
 else {
     $errors = ['DB error', 'ID error', 'Operation error'];
-    $result = ['success'=>false, 'data'=>['ids'=>$blog_ids], 'errors'=>$errors];
+    $result = ['success'=>0, 'data'=>['ids'=>$blog_ids], 'errors'=>$errors];
     print_r(json_encode($result));
 }
 

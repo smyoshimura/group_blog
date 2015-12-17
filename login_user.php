@@ -2,18 +2,16 @@
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
 session_start();
+require('db_connect.php');
 
-//$user_email = 'jean@gmail.com';
-//$user_password = 'jean1';
 $user_email = $_POST['email'];
 $user_password = $_POST['password'];
 
-require('db_connect.php');
 // get user data based on user's email address inputted
 $query = "SELECT id, username, email, password FROM users WHERE email='$user_email'";
 $user_data = mysqli_query($conn, $query);
 
-// if email found, assign user data to $output, validate password, assign user id to SESSION variable
+// if email found, assign user data to $output, validate password, assign API data to $result
 if (mysqli_num_rows($user_data)>0) {
     while ($row = mysqli_fetch_assoc($user_data)) {
         $output[] = $row;
