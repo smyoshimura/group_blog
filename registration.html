@@ -1,0 +1,23 @@
+<div class="col-sm-4 col-sm-offset-4" ng-controller="registerCtrl as rc">
+    <form>
+        <div class="form-group input-group">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-envelope"></span>
+            </span>
+            <input type="email" class="form-control" placeholder="Email" ng-model="rc.newUser.email">
+        </div>
+        <div class="form-group input-group">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-lock"></span>
+            </span>
+            <input type="password" class="form-control" placeholder="Password" ng-model="rc.newUser.password">
+        </div>
+        <div class="form-group input-group">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-user"></span>
+            </span>
+            <input type="display_name" class="form-control" placeholder="Display Name" ng-model="rc.newUser.display_name">
+        </div>
+        <button type="submit" class="btn btn-default" ng-click="">Submit</button>
+    </form>
+</div>
