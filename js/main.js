@@ -35,7 +35,7 @@ app.service("blogService", function ($q, $http) {
         "Test test test test testing test test. So much more testing to be done!"
     },
         {
-            title: "Title",
+            title: "Other Title",
             author: "Test Author",
             time: "Posted on August 24, 2013 at 9:00 PM",
             content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. " +
@@ -67,7 +67,7 @@ app.service("blogService", function ($q, $http) {
     };
 
     selfServe.postBlogEntry = function (entry) {
-        selfServe.serviceArray.push(entry);
+        selfServe.serviceArray.splice(0, 0, entry);
     }
 });
 
@@ -81,6 +81,11 @@ app.controller('loginCtrl', function (blogService) {
 });
 
 app.controller('registerCtrl', function (blogService) {
+    var selfReg = this;
+
+    selfReg.regsiterUser = function () {
+
+    };
 
 });
 
