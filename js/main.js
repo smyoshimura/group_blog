@@ -37,7 +37,7 @@ app.service("userService", function ($q, $http) {
         console.log('Sending login request.');
 
         return $http({
-            url: 'http://s-apis.learningfuze.com/blog/login.json',
+            url: 'http://54.213.120.176/group_blog/login_user.php',
             method: 'POST',
             data: dataObj,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -72,19 +72,42 @@ app.service("blogService", function ($q, $http) {
 
     selfServe.postBlogEntry = function (entry) {
         selfServe.serviceArray.splice(0, 0, entry);
+    };
+
+    selfServe.createBlogEntry = function (entry) {
+        var dataObj = $.param({
+            title: entry.title,
+            text: entry.text,
+            tags: entry.tags
+        });
+
+        console.log('Sending login request.');
+
+        return $http({
+            url: 'http://s-apis.learningfuze.com/blog/login.json',
+            method: 'POST',
+            data: dataObj,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        });
     }
 });
 
-app.controller('loginCtrl', function (blogService) {
+app.controller('loginCtrl', function (blogService, userService) {
     var selfLog = this;
 
     selfLog.requestLogIn = function () {
-        blogService.loginUser(selfLog.user);
-        selfLog.user = {};
+        userService.loginUser(selfLog.user)
+        .then(function (response) {
+                console.log('.then: ', JSON.stringify(response));
+                selfLog.user = {};
+            }, function () {
+                selfLog.user = {};
+                console.log('Error')
+            });
     }
 });
 
-app.controller('registerCtrl', function (blogService) {
+app.controller('registerCtrl', function (blogService, userService) {
     var selfReg = this;
 
     selfReg.registerUser = function () {
@@ -93,7 +116,7 @@ app.controller('registerCtrl', function (blogService) {
 
 });
 
-app.controller('blogCtrl', function (blogService) {
+app.controller('blogCtrl', function (blogService, userService) {
     var selfBlog = this;
 
     selfBlog.currentBlog = blogService.returnArray;
@@ -101,7 +124,7 @@ app.controller('blogCtrl', function (blogService) {
 })
 ;
 
-app.controller('updateCtrl', function (blogService) {
+app.controller('updateCtrl', function (blogService, userService) {
     var selfUpdate = this;
 
     selfUpdate.addEntry = function () {
