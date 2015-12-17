@@ -6,6 +6,8 @@ require('db_connect.php');
 
 $user_email = $_POST['email'];
 $user_password = $_POST['password'];
+//$user_email = 'jean@gmail.com';
+//$user_password = 'jean1';
 
 // get user data based on user's email address inputted
 $query = "SELECT id, username, email, password FROM users WHERE email='$user_email'";
@@ -25,6 +27,10 @@ if (mysqli_num_rows($user_data)>0) {
         ];
         $_SESSION['uid'] = $output[0]['id'];
         $_SESSION['token'] = $token;
+        // sessions token table
+/*        $uid = $output[0]['id'];
+        $query_s = "INSERT INTO sessions (user_id, token) VALUES('$uid','$token')";
+        mysqli_query($conn, $query_s);*/
         unset($output);
         unset($token);
     }
@@ -38,7 +44,7 @@ else {
     $result = ['success'=>0, 'data'=>[], 'error'=>'email not found'];
 }
 
-// print_r($result) sends the AJAX output
+// send result data via ajax
 if (isset($result)) {
     print_r($result);
 }
