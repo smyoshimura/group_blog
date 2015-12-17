@@ -20,14 +20,15 @@ if (mysqli_num_rows($user_data)>0) {
     }
     // correct password
     if ($output[0]['password'] == $user_password) {
-        $_SESSION['user_id'] = $output[0]['id'];
         // generate token
         $token = md5(uniqid(mt_rand(), true));
-        $_SESSION['token'] = $token;
         $result = ['success'=>1,
             'data'=>['user_id'=>$output[0]['id'], 'username'=>$output[0]['username'], 'auth_token'=>$token]
         ];
+        $_SESSION['user_id'] = $output[0]['id'];
+        $_SESSION['token'] = $token;
         unset($output);
+        unset($token);
     }
     // incorrect password
     else {
@@ -37,7 +38,6 @@ if (mysqli_num_rows($user_data)>0) {
 }
 else {
     $result = ['success'=>0, 'error'=>'email not found'];
-    unset($output);
 }
 
 // print_r($result) sends the AJAX output
