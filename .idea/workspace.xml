@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e539d3bc-df6a-4acf-9a16-6fe08cac346c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/list_blogs.php" afterPath="$PROJECT_DIR$/list_blogs.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/read_one_blog.php" afterPath="$PROJECT_DIR$/read_one_blog.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -26,25 +25,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="read_one_blog.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="read_one_blog.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/read_one_blog.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.115385">
-              <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.45698926">
+              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
               <folding>
-                <marker date="1450298627167" expanded="true" signature="371:417" placeholder="select * fro..blogs..." />
+                <marker date="1450380926812" expanded="true" signature="356:493" placeholder="select `id`,..blogs..." />
+                <marker date="1450380926812" expanded="true" signature="570:720" placeholder="select `id`,..blogs..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="list_blogs.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="list_blogs.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/list_blogs.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2735632">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state vertical-scroll-proportion="-6.5384617">
+              <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
               <folding>
-                <marker date="1450299398891" expanded="true" signature="133:154" placeholder="select * fro..blogs..." />
+                <marker date="1450312531594" expanded="true" signature="133:154" placeholder="select * fro..blogs..." />
               </folding>
             </state>
           </provider>
@@ -70,8 +70,10 @@
       <list>
         <option value="$PROJECT_DIR$/test.php" />
         <option value="$PROJECT_DIR$/connect.php" />
-        <option value="$PROJECT_DIR$/read_one_blog.php" />
         <option value="$PROJECT_DIR$/list_blogs.php" />
+        <option value="$PROJECT_DIR$/test.html" />
+        <option value="$PROJECT_DIR$/ajax.js" />
+        <option value="$PROJECT_DIR$/read_one_blog.php" />
       </list>
     </option>
   </component>
@@ -87,10 +89,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="1358" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -187,10 +189,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17750533" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16187595" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -251,7 +253,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1450298627167" expanded="true" signature="371:417" placeholder="select * fro..blogs..." />
+            <marker date="1450380926812" expanded="true" signature="356:493" placeholder="select `id`,..blogs..." />
+            <marker date="1450380926812" expanded="true" signature="570:720" placeholder="select `id`,..blogs..." />
           </folding>
         </state>
       </provider>
@@ -261,7 +264,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
           <folding>
-            <marker date="1450299398891" expanded="true" signature="133:154" placeholder="select * fro..blogs..." />
+            <marker date="1450312531594" expanded="true" signature="133:154" placeholder="select * fro..blogs..." />
           </folding>
         </state>
       </provider>
@@ -279,25 +282,26 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/read_one_blog.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.115385">
-          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-          <folding>
-            <marker date="1450298627167" expanded="true" signature="371:417" placeholder="select * fro..blogs..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/list_blogs.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2735632">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state vertical-scroll-proportion="-6.5384617">
+          <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
           <folding>
-            <marker date="1450299398891" expanded="true" signature="133:154" placeholder="select * fro..blogs..." />
+            <marker date="1450312531594" expanded="true" signature="133:154" placeholder="select * fro..blogs..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/read_one_blog.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45698926">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding>
+            <marker date="1450380926812" expanded="true" signature="356:493" placeholder="select `id`,..blogs..." />
+            <marker date="1450380926812" expanded="true" signature="570:720" placeholder="select `id`,..blogs..." />
           </folding>
         </state>
       </provider>
