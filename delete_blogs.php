@@ -67,6 +67,7 @@ if ($token == $_SESSION['token'] && !$invalid_id) {
     // check if query operation succeeded
     if (mysqli_affected_rows($conn)>0) {
         $result = ['success'=>1, 'data'=>['ids'=>$blog_ids]];
+        unset($token);
     }
     else {
         $result = ['success'=>0, 'data'=>['ids'=>$blog_ids], 'errors'=>'unknown database error'];
