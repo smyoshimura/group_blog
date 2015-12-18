@@ -5,7 +5,7 @@ session_start();
 require('db_connect.php');
 
 $user_email = $_POST['email'];
-$user_password = $_POST['password'];
+$user_password = md5($_POST['password']);
 //$user_email = 'jean@gmail.com';
 //$user_password = 'jean1';
 
