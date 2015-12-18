@@ -4,6 +4,7 @@ header('Access-Control-Allow-Methods: GET, POST');
 require('connect.php');
 session_start();
 if(!empty($_POST)){
+
     $id=$_POST['user_id'];
     $token = $_POST['token'];
 

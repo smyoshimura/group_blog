@@ -3,6 +3,8 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
 require('connect.php');
 
+//Checks if token is valid, if not only public blog entries will return
+
 if (isset($token)) {
     if ($token === $_SESSION['token']) {
         $query = "SELECT * FROM `blogs`";
