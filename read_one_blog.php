@@ -18,6 +18,9 @@ if (!empty($_POST)) {
             $query = "select `id`, `title`, `text`, `tags`, `owner_id`, `created_timestamp`, `published_timestamp`, `edited_timestamp` from `blogs` where `id`=$id and `public`=$public";
         }
     }
+
+//This fetches the blogs from the database and saves it in the variable $output
+
     $info = mysqli_query($conn, $query);
     if (mysqli_num_rows($info) > 0) {
         while ($row = mysqli_fetch_assoc($info)) {
