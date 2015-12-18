@@ -28,6 +28,21 @@ app.service("userService", function ($q, $http) {
 
     selfUser.currentUser = {};
 
+    selfUser.registerUser = function (user) {
+        var dataObj = $.param({
+
+        });
+
+        console.log('Sending registration request.');
+
+        return $http({
+            url: 'http://54.213.120.176/group_blog/register_user.php',
+            method: 'POST',
+            data: dataObj,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        });
+    };
+
     selfUser.loginUser = function (user) {
         var dataObj = $.param({
             email: user.email,
@@ -74,11 +89,14 @@ app.service("blogService", function ($q, $http) {
         selfServe.serviceArray.splice(0, 0, entry);
     };
 
-    selfServe.createBlogEntry = function (entry) {
+ /*   selfServe.createBlogEntry = function (entry) {
         var dataObj = $.param({
             title: entry.title,
             text: entry.text,
-            tags: entry.tags
+            tags: entry.tags,
+            owner_id: entry.owner_id,
+            public: entry.public,
+            publish: entry.publish
         });
 
         console.log('Sending login request.');
@@ -89,17 +107,21 @@ app.service("blogService", function ($q, $http) {
             data: dataObj,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         });
-    }
+    }*/
 });
 
 app.controller('loginCtrl', function (blogService, userService) {
     var selfLog = this;
 
+    selfLog.currentToken = null;
+
     selfLog.requestLogIn = function () {
         userService.loginUser(selfLog.user)
         .then(function (response) {
-                console.log('.then: ', JSON.stringify(response));
+                console.log('.then: ', (response));
+                selfLog.currentToken = response.data.data.auth_token;
                 selfLog.user = {};
+                console.log('currentToken: ', selfLog.currentToken)
             }, function () {
                 selfLog.user = {};
                 console.log('Error')
