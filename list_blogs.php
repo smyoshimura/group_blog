@@ -3,13 +3,16 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
 require('connect.php');
 
-if (isset($token)) {
-    if ($token === $_SESSION['token']) {
+//Checks if token is valid, if not only public blog entries will return
+
+//if (isset($token)) {
+//    if ($token === $_SESSION['token']) {
         $query = "SELECT * FROM `blogs`";
-    } else {
-        $query = "SELECT * FROM `blogs` WHERE `public`=1";
-    }
-}
+//    }
+//else {
+//        $query = "SELECT * FROM `blogs` WHERE `public`=1";
+//    }
+//}
 $info = mysqli_query($conn, $query);
 if (mysqli_num_rows($info) > 0) {
     while ($row = mysqli_fetch_assoc($info)) {
