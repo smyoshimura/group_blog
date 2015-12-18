@@ -95,10 +95,7 @@ app.service("blogService", function ($q, $http) {
         var dataObj = $.param({
             title: entry.title,
             text: entry.text,
-            tags: entry.tags,
-            owner_id: entry.owner_id,
-            public: 1,
-            publish: 'yes'
+            tags: entry.tags
         });
 
         console.log('Sending entry creation request.');

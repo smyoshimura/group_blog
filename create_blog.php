@@ -6,7 +6,7 @@ header('Access-Control-Allow-Methods: GET, POST');
 and $blog should be equal to json_decode($_POST)
 */
 //$blog = array('title' => 'title fun woooo', 'text' => 'text again and more', 'tags' => 'please, work', 'owner_id' => '2', 'public' => '1', 'publish' => 'yes');
-$blog = array('title' => $_POST['title'], 'text' => $_POST['text'], 'tags' => $_POST['tags'], 'owner_id' => $_POST['owner_id'], 'public' => $_POST['public']);
+$blog = array('title' => $_POST['title'], 'text' => $_POST['text'], 'tags' => $_POST['tags'], 'owner_id' => '2', 'public' => '1', 'publish' => 'yes');
 
 function create_blog($blog)
 {
