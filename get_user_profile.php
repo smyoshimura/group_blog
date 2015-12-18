@@ -6,10 +6,10 @@ session_start();
 if(!empty($_POST)){
 
     $id=$_POST['user_id'];
-    $token = $_POST['token'];
+//    $token = $_POST['token'];
 
-    if(isset($token)){
-        if ($token === $_SESSION['token']) {
+//    if(isset($token)){
+//        if ($token === $_SESSION['token']) {
             $query ="SELECT `id`, `username`, `email`, `picture`, `timestamp` FROM `users` WHERE `id`=$id";
             $info=mysqli_query($conn, $query);
             if(mysqli_num_rows($info)>0){
@@ -24,8 +24,8 @@ if(!empty($_POST)){
         } else {
             $result=['success'=>0, 'No token access'];
         }
-    }
-}
+//    }
+//}
 if(isset($result)){
     print_r(json_encode($result));
 }
