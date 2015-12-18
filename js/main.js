@@ -97,8 +97,8 @@ app.service("blogService", function ($q, $http) {
             text: entry.text,
             tags: entry.tags,
             owner_id: entry.owner_id,
-            public: entry.public,
-            publish: entry.publish
+            public: 1,
+            publish: 'yes'
         });
 
         console.log('Sending entry creation request.');
@@ -166,6 +166,8 @@ app.controller('updateCtrl', function (blogService, userService) {
         blogService.createBlogEntry(selfUpdate.newEntry)
             .then(function (response) {
                 console.log('.then: ', response);
+                selfUpdate.newEntry.id = response.data.data.id;
+                blogService.postBlogEntry(selfUpdate.newEntry);
                 selfUpdate.newEntry = {};
             }, function () {
                 console.log('Error');
