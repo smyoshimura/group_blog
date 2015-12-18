@@ -16,8 +16,9 @@
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-user"></span>
             </span>
-            <input type="display_name" class="form-control" placeholder="Display Name" ng-model="rc.newUser.display_name">
+            <input type="display_name" class="form-control" placeholder="Display Name"
+                   ng-model="rc.newUser.display_name">
         </div>
-        <button type="submit" class="btn btn-default" ng-click="">Submit</button>
+        <button type="submit" class="btn btn-default" ng-click="rc.requestRegistration()">Submit</button>
     </form>
 </div>

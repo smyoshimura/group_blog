@@ -30,7 +30,9 @@ app.service("userService", function ($q, $http) {
 
     selfUser.registerUser = function (user) {
         var dataObj = $.param({
-
+            email: user.email,
+            display_name: user.display_name,
+            password: user.password
         });
 
         console.log('Sending registration request.');
@@ -89,7 +91,7 @@ app.service("blogService", function ($q, $http) {
         selfServe.serviceArray.splice(0, 0, entry);
     };
 
- /*   selfServe.createBlogEntry = function (entry) {
+    selfServe.createBlogEntry = function (entry) {
         var dataObj = $.param({
             title: entry.title,
             text: entry.text,
@@ -99,15 +101,15 @@ app.service("blogService", function ($q, $http) {
             publish: entry.publish
         });
 
-        console.log('Sending login request.');
+        console.log('Sending entry creation request.');
 
         return $http({
-            url: 'http://s-apis.learningfuze.com/blog/login.json',
+            url: 'http://54.213.120.176/group_blog/createblog.php',
             method: 'POST',
             data: dataObj,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         });
-    }*/
+    }
 });
 
 app.controller('loginCtrl', function (blogService, userService) {
@@ -117,7 +119,7 @@ app.controller('loginCtrl', function (blogService, userService) {
 
     selfLog.requestLogIn = function () {
         userService.loginUser(selfLog.user)
-        .then(function (response) {
+            .then(function (response) {
                 console.log('.then: ', (response));
                 selfLog.currentToken = response.data.data.auth_token;
                 selfLog.user = {};
@@ -132,8 +134,15 @@ app.controller('loginCtrl', function (blogService, userService) {
 app.controller('registerCtrl', function (blogService, userService) {
     var selfReg = this;
 
-    selfReg.registerUser = function () {
-
+    selfReg.requestRegistration = function () {
+        userService.registerUser(selfReg.newUser)
+            .then(function (response) {
+                console.log('.then: ', response);
+                selfReg.newUser = {};
+            }, function () {
+                console.log('Error');
+                selfReg.newUser = {};
+            });
     };
 
 });
@@ -151,6 +160,16 @@ app.controller('updateCtrl', function (blogService, userService) {
 
     selfUpdate.addEntry = function () {
         blogService.postBlogEntry(selfUpdate.newEntry);
-        selfUpdate.newEntry = {};
     };
+
+    selfUpdate.requestAddEntry = function () {
+        blogService.createBlogEntry(selfUpdate.newEntry)
+            .then(function (response) {
+                console.log('.then: ', response);
+                selfUpdate.newEntry = {};
+            }, function () {
+                console.log('Error');
+                selfUpdate.newEntry = {};
+            });
+    }
 });
