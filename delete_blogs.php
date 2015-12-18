@@ -67,6 +67,7 @@ if ($token == $_SESSION['token'] && !$invalid_id) {
     // check if query operation succeeded
     if (mysqli_affected_rows($conn)>0) {
         $result = ['success'=>1, 'data'=>['ids'=>$blog_ids]];
+        unset($token);
     }
     else {
         $result = ['success'=>0, 'data'=>['ids'=>$blog_ids], 'errors'=>'unknown database error'];
@@ -78,11 +79,11 @@ else if ($token != $_SESSION['token']) {
 
 // send result data via ajax
 if (isset($result)) {
-    print_r($result);
+    print_r(json_encode($result));
 }
 else {
     $result = ['success'=>0, 'data'=>[], 'errors'=>'fatal operation error'];
-    print_r($result);
+    print_r(json_encode($result));
 }
 
 ?>
