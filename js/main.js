@@ -104,7 +104,7 @@ app.service("blogService", function ($q, $http) {
         console.log('Sending entry creation request.');
 
         return $http({
-            url: 'http://54.213.120.176/group_blog/createblog.php',
+            url: 'http://54.213.120.176/group_blog/create_blog.php',
             method: 'POST',
             data: dataObj,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
